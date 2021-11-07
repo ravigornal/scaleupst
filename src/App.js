@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Signin from './components/Signin';
+import Signup from './components/Signup';
+import { Switch } from "react-router";
+import Homepage from './components/Homepage';
+import ProtectedRoute from './components/ProtectedRoute';
+
+// import Login from './features/User/Login';
+// import Signup from './features/User/Signup';
+// import Dashboard from './features/User/Dashboard';
+// import { PrivateRoute } from './helpers/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+        <Switch>
+          <Route component={Signin} path="/login" />
+          <Route exact component={Signup} path="/signup" />
+          <ProtectedRoute exact component ={Homepage} path="/home" />
+          {/* <PrivateRoute exact component={Dashboard} path="/" /> */}
+        </Switch>
+    </Router>
+
     </div>
   );
 }
