@@ -5,7 +5,9 @@ function Homepage() {
     const [data, setData] = useState([]);
 
     const addDocuments = () => {
-        setData([...data,newfile]);
+        if(newfile) {
+            setData([...data,newfile]);
+        }
     }
 
     return (
