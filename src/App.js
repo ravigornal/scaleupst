@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Redirect } from 'react-router-dom';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import { Switch } from "react-router";
@@ -17,9 +17,12 @@ function App() {
     <div className="App">
     <Router>
         <Switch>
-          <Route component={Signin} path="/login" />
-          <Route exact component={Signup} path="/signup" />
-          <ProtectedRoute exact component ={Homepage} path="/home" />
+            <Route exact path="/">
+                <Redirect to="/login" />
+            </Route>
+            <Route component={Signin} path="/login" />
+            <Route exact component={Signup} path="/signup" />
+            <ProtectedRoute exact component ={Homepage} path="/home" />
           {/* <PrivateRoute exact component={Dashboard} path="/" /> */}
         </Switch>
     </Router>
